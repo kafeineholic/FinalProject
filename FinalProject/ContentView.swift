@@ -1,14 +1,6 @@
 import SwiftUI
 
 struct ContentView: View {
-<<<<<<< Updated upstream
-    var body: some View {
-       Text("test")
-        Text("DoraemonTest")
-        Text("DoraemonTest123")
-    }
-=======
-	
 	@State private var showSecondView = false
 	
 	var body: some View {
@@ -34,7 +26,6 @@ struct ContentView: View {
 			} //end zstack1
 		} //end navstack
 	}
->>>>>>> Stashed changes
 }
 
 #Preview {
