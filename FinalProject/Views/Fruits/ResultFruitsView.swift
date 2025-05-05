@@ -55,6 +55,7 @@ struct ResultFruitsView: View {
 		let result = model.classifyingFruitImage()
 		let fruit = result.components(separatedBy: "\n")[0].lowercased()
 
+		// ใช้ loadTranslations() เพื่อดึงข้อมูลแปลผล
 		if let allTranslations = FruitsData.loadTranslations(),
 		   let fruitTranslation = allTranslations[fruit] {
 			translations = [
@@ -66,6 +67,8 @@ struct ResultFruitsView: View {
 			translations = ["th": "ไม่ทราบ", "en": fruit, "jp": "不明"]
 		}
 	}
+
+
 
 }
 
