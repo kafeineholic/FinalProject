@@ -33,7 +33,6 @@ struct ResultFruitsView: View {
 					TranslationRow(label: "JP", value: translations["jp"] ?? "-")
 				}
 				.padding()
-				.background(Color(.secondarySystemBackground))
 				.cornerRadius(16)
 				.frame(maxWidth: 320) //
 				.padding([.horizontal])
@@ -44,7 +43,8 @@ struct ResultFruitsView: View {
 			}
 			.padding(.top)
 		}
-		.background(Color(.systemBackground))
+        .background(Color(red: 0.88, green: 0.95, blue: 1.0)) 
+
 		.onAppear {
 			classifyAndTranslate()
 		}
@@ -72,76 +72,75 @@ struct ResultFruitsView: View {
 
 
 struct TranslationRow: View {
-	let label: String
-	let value: String
-	@State private var showSilentAlert = false
-	@State private var isSpeaking = false
+    let label: String
+    let value: String
+    @State private var showSilentAlert = false
+    @State private var isSpeaking = false
 
-	var body: some View {
-		HStack {
-			Text("Name \(label):")
-				.fontWeight(.semibold)
-			Text(value)
-				.foregroundColor(.primary)
-			Spacer()
-			
-			Button(action: {
-				speak()
-			}) {
-				Image(systemName: "speaker.wave.2.fill")
-					.foregroundColor(.white)
-					.padding(10)
-					.background(
-						Circle()
-							.fill(isSpeaking ? Color.blue.opacity(0.6) : Color(.systemGray5))
-					)
-			}
-			.animation(.easeInOut(duration: 0.2), value: isSpeaking)
-		}
-		
-		.font(.system(size: 16))
-		.padding(.vertical, 7)
-		.alert(isPresented: $showSilentAlert) {
-			Alert(
-				title: Text("Silent Mode!"),
-				message: Text(" Turn on Volume"),
-				dismissButton: .default(Text("OK"))
-			)
-		}
-	}
+    var body: some View {
+        Button(action: {
+            speak()
+        }) {
+            HStack {
+                Image(systemName: isSpeaking ? "pause.fill" : "play.fill")
+                    .foregroundColor(.red)
 
-	func speak() {
-		let langCode: String
-		switch label.uppercased() {
-		case "TH":
-			langCode = "th-TH"
-		case "EN":
-			langCode = "en-US"
-		case "JP", "JA":
-			langCode = "ja-JP"
-		default:
-			langCode = "en-US"
-		}
+                Text("\(label) : \(value)")
+                    .font(.headline)
+                    .foregroundColor(.black)
 
-		isSpeaking = true
+                Spacer()
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color.white)
+            .cornerRadius(25)
+            .shadow(color: .gray.opacity(0.2), radius: 4, x: 0, y: 2)
+        }
+        .padding(.horizontal, 20)
+        .alert(isPresented: $showSilentAlert) {
+            Alert(
+                title: Text("Silent Mode!"),
+                message: Text("Turn on Volume"),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+    }
 
-		SpeechManager.shared.speak(text: value, language: langCode) {
-			showSilentAlert = true
-		}
+    func speak() {
+        let langCode: String
+        switch label.uppercased() {
+        case "TH":
+            langCode = "th-TH"
+        case "EN":
+            langCode = "en-US"
+        case "JP", "JA":
+            langCode = "ja-JP"
+        default:
+            langCode = "en-US"
+        }
 
-		// Stop the highlight after delay
-		DispatchQueue.main.asyncAfter(deadline: .now() + Double(value.count) * 0.1 + 0.5) {
-			isSpeaking = false
-		}
-	}
+        isSpeaking = true
+
+        SpeechManager.shared.speak(text: value, language: langCode) {
+            showSilentAlert = true
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(value.count) * 0.1 + 0.5) {
+            isSpeaking = false
+        }
+    }
 }
 
-//#Preview {
-//    ResultFruitsView()
-//}
+
+
+
+
+
 
 //example
 #Preview {
-	let sampleImage = UIImage(named: "apple")!
-		return ResultFruitsView(photo: sampleImage)
-  }
+    let sampleImage = UIImage(named: "apple") ?? UIImage(systemName: "photo")!
+    return ResultFruitsView(photo: sampleImage)
+}
+
