@@ -16,16 +16,8 @@ struct FruitsView: View {
 				ProgressView()
 			} else {
 				CardSwiperView(items: $viewModel.fruits) { fruit in
-					VStack {
-						Text(fruit.english)
-							.font(.largeTitle)
-						Text(fruit.thai)
-							.font(.title2)
-						Text(fruit.japanese)
-							.font(.title3)
-					}
+					FruitsCardView(fruit: fruit)
 				}
-
 			}
 		}
 		.onAppear {

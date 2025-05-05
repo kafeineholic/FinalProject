@@ -1,33 +1,49 @@
 //
-//  FruitTranslations.swift
+//  FruitsData.swift
 //  FinalProject
 //
 //  Created by Pattranith Ruangrotch on 4/5/2568 BE.
 //
 
-// โครงสร้างข้อมูลที่ตรงกับ Keys ใน plist
+
 import Foundation
 
-// โครงสร้างข้อมูลของผลไม้ที่ใช้ใน Dictionary
-struct FruitsData: Codable, Identifiable {
+// โครงสร้างข้อมูลของผลไม้ (ปรับให้ตรงกับ plist)
+struct FruitItem: Codable, Identifiable {
 	var id = UUID()  // สำหรับการใช้งานกับ ForEach
-	let english: String
-	let thai: String
-	let japanese: String
-	
+	let en: String
+	let th: String
+	let jp: String
+	// กำหนด CodingKeys เพื่อให้ตรงกับ key ใน plist
 	enum CodingKeys: String, CodingKey {
-		case english
-		case thai
-		case japanese
+		case en, th, jp
 	}
+}
 
-	// ฟังก์ชันสำหรับโหลดข้อมูลจากไฟล์ FruitsData.plist
-	static func loadTranslations() -> [String: FruitsData]? {
+struct FruitsData {
+	// ฟังก์ชันสำหรับโหลดข้อมูลจาก FruitsData.plist
+	static func loadTranslations() -> [String: FruitItem]? {
 		guard let url = Bundle.main.url(forResource: "FruitsData", withExtension: "plist"),
-			  let data = try? Data(contentsOf: url),
-			  let decoder = try? PropertyListDecoder().decode([String: FruitsData].self, from: data) else {
+			  let data = try? Data(contentsOf: url) else {
+			print("ไม่พบไฟล์ FruitsData.plist")
 			return nil
 		}
-		return decoder
+		
+		do {
+			let decoder = PropertyListDecoder()
+			let translations = try decoder.decode([String: FruitItem].self, from: data)
+			return translations
+		} catch {
+			print("ข้อผิดพลาดในการ decode ข้อมูลจาก plist:")
+			print("Error: \(error)")
+			print("Localized: \(error.localizedDescription)")
+			return nil
+		}
+	}
+	
+	// ฟังก์ชันเสริมสำหรับแปลงเป็น Array (ถ้าต้องการ)
+	static func loadAsArray() -> [FruitItem]? {
+		guard let dict = loadTranslations() else { return nil }
+		return Array(dict.values)
 	}
 }

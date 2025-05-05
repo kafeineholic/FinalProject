@@ -59,16 +59,14 @@ struct ResultFruitsView: View {
 		if let allTranslations = FruitsData.loadTranslations(),
 		   let fruitTranslation = allTranslations[fruit] {
 			translations = [
-				"th": fruitTranslation.thai,
-				"en": fruitTranslation.english,
-				"jp": fruitTranslation.japanese
+				"th": fruitTranslation.th,
+				"en": fruitTranslation.en,
+				"jp": fruitTranslation.jp
 			]
 		} else {
 			translations = ["th": "ไม่ทราบ", "en": fruit, "jp": "不明"]
 		}
 	}
-
-
 
 }
 
@@ -141,6 +139,7 @@ struct TranslationRow: View {
 //#Preview {
 //    ResultFruitsView()
 //}
+
 //example
 #Preview {
 	let sampleImage = UIImage(named: "apple")!
