@@ -10,9 +10,24 @@
 		522981D02DBD52C8004B0163 /* FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		52FD2C962DC746C700886E8B /* Exceptions for "FinalProject" folder in "FinalProject" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				FruitTranslations.plist,
+				Info.plist,
+			);
+			target = 522981CF2DBD52C8004B0163 /* FinalProject */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		522981D22DBD52C8004B0163 /* FinalProject */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				52FD2C962DC746C700886E8B /* Exceptions for "FinalProject" folder in "FinalProject" target */,
+			);
 			path = FinalProject;
 			sourceTree = "<group>";
 		};
