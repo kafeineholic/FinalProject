@@ -9,16 +9,30 @@
 import Foundation
 
 // โครงสร้างข้อมูลของผลไม้ (ปรับให้ตรงกับ plist)
-struct FruitItem: Codable, Identifiable {
-	var id = UUID()  // สำหรับการใช้งานกับ ForEach
+struct FruitItem: Identifiable, Decodable {
+	var id = UUID()
 	let en: String
 	let th: String
 	let jp: String
-	// กำหนด CodingKeys เพื่อให้ตรงกับ key ใน plist
+	let imageName: String
+	
 	enum CodingKeys: String, CodingKey {
 		case en, th, jp
 	}
+	
+	init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		en = try container.decode(String.self, forKey: .en)
+		th = try container.decode(String.self, forKey: .th)
+		jp = try container.decode(String.self, forKey: .jp)
+		// ใช้ชื่อผลไม้เป็นชื่อไฟล์ภาพ
+		imageName = en.lowercased()
+			.replacingOccurrences(of: " ", with: "")
+			.components(separatedBy: CharacterSet.alphanumerics.inverted)
+			.joined()
+	}
 }
+
 
 struct FruitsData {
 	// ฟังก์ชันสำหรับโหลดข้อมูลจาก FruitsData.plist

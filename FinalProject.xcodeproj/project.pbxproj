@@ -14,7 +14,6 @@
 		52FD2C962DC746C700886E8B /* Exceptions for "FinalProject" folder in "FinalProject" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Assets.xcassets,
 				Info.plist,
 			);
 			target = 522981CF2DBD52C8004B0163 /* FinalProject */;
