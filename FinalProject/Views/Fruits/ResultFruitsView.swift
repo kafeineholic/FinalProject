@@ -11,9 +11,9 @@ struct ResultFruitsView: View {
 	
 	var photo: UIImage
 	@State private var translations: [String: String] = [:]
-	let allTranslations = FruitTranslations.loadTranslations()
+	let allTranslations = FruitsData.loadTranslations()
 	
-    var body: some View {
+	var body: some View {
 		ScrollView {
 			VStack(spacing: 24) {
 				// pic
@@ -22,11 +22,9 @@ struct ResultFruitsView: View {
 					.scaledToFit()
 					.frame(maxWidth: .infinity)
 					.frame(height: UIScreen.main.bounds.width * 0.95) // pic frame
-
 					.cornerRadius(16)
 					.padding(.top, 70) // pic down
 					.padding([.leading, .trailing, .bottom])
-
 				
 				// row
 				VStack(alignment: .leading, spacing: 16) {
@@ -41,7 +39,6 @@ struct ResultFruitsView: View {
 				.padding([.horizontal])
 				.padding(.top, 20) // row down
 				.shadow(radius: 5)
-
 				
 				Spacer()
 			}
@@ -52,14 +49,26 @@ struct ResultFruitsView: View {
 			classifyAndTranslate()
 		}
 	}
-
+	
 	func classifyAndTranslate() {
 		let model = FruitsMLModel(myUIImage: photo)
 		let result = model.classifyingFruitImage()
 		let fruit = result.components(separatedBy: "\n")[0].lowercased()
-		translations = allTranslations[fruit] ?? ["th": "ไม่ทราบ", "en": fruit, "jp": "不明"]
+
+		if let allTranslations = FruitsData.loadTranslations(),
+		   let fruitTranslation = allTranslations[fruit] {
+			translations = [
+				"th": fruitTranslation.thai,
+				"en": fruitTranslation.english,
+				"jp": fruitTranslation.japanese
+			]
+		} else {
+			translations = ["th": "ไม่ทราบ", "en": fruit, "jp": "不明"]
+		}
 	}
+
 }
+
 
 struct TranslationRow: View {
 	let label: String

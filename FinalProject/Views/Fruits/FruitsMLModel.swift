@@ -16,7 +16,7 @@ class FruitsMLModel: NSObject {
 	}
 
 	func createImageClassifier() -> VNCoreMLModel {
-		guard let imageClassifierWrapper = try? Fruit34100(configuration: MLModelConfiguration()) else {
+		guard let imageClassifierWrapper = try? FruitsModel(configuration: MLModelConfiguration()) else {
 			fatalError("ไม่สามารถสร้าง Image Classifier Model Instance ได้")
 		}
 		return try! VNCoreMLModel(for: imageClassifierWrapper.model)

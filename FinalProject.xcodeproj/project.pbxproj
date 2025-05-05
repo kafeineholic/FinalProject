@@ -15,7 +15,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				FruitTranslations.plist,
 				Info.plist,
 			);
 			target = 522981CF2DBD52C8004B0163 /* FinalProject */;
