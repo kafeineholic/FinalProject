@@ -10,10 +10,6 @@ import SwiftUI
 struct AnimalsView: View {
     @StateObject var viewModel = AnimalsViewModel()
     
-<<<<<<< Updated upstream
-    var body: some View {
-    }
-=======
 	var body: some View {
 		VStack {
 			if viewModel.isLoading {
@@ -28,5 +24,4 @@ struct AnimalsView: View {
 			viewModel.loadAnimals()
 		}
 	}
->>>>>>> Stashed changes
 }
