@@ -8,18 +8,25 @@
 import SwiftUI
 
 struct MainView: View {
+	@State private var isAnimating = false
 	var body: some View {
 		NavigationStack{
 			ZStack { //open zstack1
-				// wallpaper (Hex: #FFF8E7)
-				Color(red: 255/255, green: 248/255, blue: 231/255)
+				Image("background01")
+					.resizable()
+					.scaledToFill()
+					.ignoresSafeArea()
 					.ignoresSafeArea()
 				VStack { //open vstack1
-					NavigationLink(destination: SecondView()){
-						Image(systemName: "play.circle.fill")
-							.font(.system(size: 70))
-							.foregroundStyle(.pink)
-							.padding(.trailing)
+					NavigationLink(destination: CategorySelectionView()){
+						Image("button01")
+							.resizable()
+							.aspectRatio(contentMode: .fit)
+							.frame(maxWidth: 250)
+							.scaleEffect(isAnimating ? 1.2 : 1.0)
+							.animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: isAnimating)
+							.onAppear { isAnimating = true }
+							.saturation(0.95)
 					}
 				} //end vstack1
 			} //end zstack1

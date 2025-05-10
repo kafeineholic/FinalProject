@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "chinstrap-penguin-antarctica-adxe9lie-penguin-cute-penguin-family-36cead746945a29dee60c4ec15af8dca.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

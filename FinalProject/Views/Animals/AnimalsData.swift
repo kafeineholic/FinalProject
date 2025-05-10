@@ -23,7 +23,7 @@ struct AnimalItem: Identifiable, Decodable {
         en = try container.decode(String.self, forKey: .en)
         th = try container.decode(String.self, forKey: .th)
         jp = try container.decode(String.self, forKey: .jp)
-        // ใช้ชื่อผลไม้เป็นชื่อไฟล์ภาพ
+        // ใช้ชื่อสัตว์เป็นชื่อไฟล์ภาพ
         imageName = en.lowercased()
             .replacingOccurrences(of: " ", with: "")
             .components(separatedBy: CharacterSet.alphanumerics.inverted)

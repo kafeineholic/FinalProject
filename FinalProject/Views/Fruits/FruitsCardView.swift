@@ -39,8 +39,8 @@ struct FruitsCardView: View {
 	}
 	var body: some View {
 		ZStack {
-			CardBack(width: width, height: height, degree: $backDegree, fruit: fruit)
-			CardFront(width: width, height: height, degree: $frontDegree, fruit: fruit)
+			FruitsCardBack(width: width, height: height, degree: $backDegree, fruit: fruit)
+			FruitsCardFront(width: width, height: height, degree: $frontDegree, fruit: fruit)
 		}
 		.onTapGesture {
 			flipCard()
@@ -48,7 +48,7 @@ struct FruitsCardView: View {
 	}
 }
 
-struct CardFront: View {
+struct FruitsCardFront: View {
 	let width: CGFloat
 	let height: CGFloat
 	@Binding var degree: Double
@@ -71,7 +71,7 @@ struct CardFront: View {
 	}
 }
 
-struct CardBack: View {
+struct FruitsCardBack: View {
 	let width: CGFloat
 	let height: CGFloat
 	@Binding var degree: Double

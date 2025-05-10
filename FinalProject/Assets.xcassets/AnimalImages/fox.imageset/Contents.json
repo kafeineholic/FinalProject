@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "fox-download-clip-art-fox-351b3f3e368c6f4c21efb7a09abdfb7c.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

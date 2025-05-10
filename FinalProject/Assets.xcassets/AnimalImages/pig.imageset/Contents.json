@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "middle-white-danish-landrace-pig-miniature-pig-large-white-pig-stock-photography-pig-102b2e58b3bd5871fb5ff20804c6b653.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
