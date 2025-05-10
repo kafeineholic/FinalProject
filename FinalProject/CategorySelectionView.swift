@@ -20,9 +20,8 @@ struct CategorySelectionView: View {
 				VStack(spacing: 24) {
 					Spacer().frame(height: 30)
 
-					CategoryButton(imageName: "button02", destination: FruitsView())
-					CategoryButton(imageName: "button03", destination: AnimalsView())
-
+					CategoryButton(imageName: "button02", destination: MenuSelectionView())
+					CategoryButton(imageName: "button03", destination: MenuSelectionView())
 					Spacer()
 				}
 
