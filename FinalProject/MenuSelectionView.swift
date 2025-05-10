@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct MenuSelectionView: View {
-	@Environment(\.dismiss) var dismiss
-	@State private var selectedCategory: String? = nil
+	@Binding var selectedCategory: String?  // ใช้ @Binding เพื่อรับค่าจาก CategorySelectionView
 
 	var body: some View {
 		NavigationStack {
@@ -38,7 +37,7 @@ struct MenuSelectionView: View {
 			.toolbar {
 				ToolbarItem(placement: .navigationBarTrailing) {
 					Button(action: {
-						dismiss()
+						// Action for house button
 					}) {
 						Image(systemName: "house.circle.fill")
 							.font(.system(size: 40))
@@ -50,7 +49,6 @@ struct MenuSelectionView: View {
 		}
 	}
 
-	
 	func destinationForFlashcard() -> AnyView {
 		if let category = selectedCategory {
 			if category == "Fruit" {
@@ -62,7 +60,6 @@ struct MenuSelectionView: View {
 		return AnyView(EmptyView())
 	}
 
-	
 	func destinationForQuiz() -> AnyView {
 		if let category = selectedCategory {
 			if category == "Fruit" {
@@ -74,7 +71,6 @@ struct MenuSelectionView: View {
 		return AnyView(EmptyView())
 	}
 
-	
 	func destinationForScan() -> AnyView {
 		if let category = selectedCategory {
 			if category == "Fruit" {
@@ -113,6 +109,3 @@ struct MenuButton: View {
 	}
 }
 
-#Preview {
-	MenuSelectionView()
-}
