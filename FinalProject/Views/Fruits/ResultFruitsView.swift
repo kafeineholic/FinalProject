@@ -12,9 +12,14 @@ struct ResultFruitsView: View {
 	var photo: UIImage
 	@State private var translations: [String: String] = [:]
 	let allTranslations = FruitsData.loadTranslations()
-	
+	@Environment(\.dismiss) var dismiss
 	var body: some View {
-		ScrollView {
+		ZStack {
+			Image("background01")
+				.resizable()
+				.scaledToFill()
+				.ignoresSafeArea()
+				.ignoresSafeArea()
 			VStack(spacing: 24) {
 				// pic
 				Image(uiImage: photo)
@@ -43,10 +48,22 @@ struct ResultFruitsView: View {
 			}
 			.padding(.top)
 		}
-        .background(Color(red: 0.88, green: 0.95, blue: 1.0)) 
-
 		.onAppear {
 			classifyAndTranslate()
+		}
+		.navigationBarBackButtonHidden(true)
+		.toolbar {
+			ToolbarItem(placement: .navigationBarTrailing) {
+				Button(action: {
+					dismiss()
+				}) {
+					Image("homeIcon")
+						.resizable()
+						.aspectRatio(contentMode: .fit)
+						.frame(width: 50, height: 50)
+						.padding(8)
+				}
+			}
 		}
 	}
 	
@@ -54,7 +71,7 @@ struct ResultFruitsView: View {
 		let model = FruitsMLModel(myUIImage: photo)
 		let result = model.classifyingFruitImage()
 		let fruit = result.components(separatedBy: "\n")[0].lowercased()
-
+		
 		// ใช้ loadTranslations() เพื่อดึงข้อมูลแปลผล
 		if let allTranslations = FruitsData.loadTranslations(),
 		   let fruitTranslation = allTranslations[fruit] {
@@ -67,69 +84,69 @@ struct ResultFruitsView: View {
 			translations = ["th": "ไม่ทราบ", "en": fruit, "jp": "不明"]
 		}
 	}
-
+	
 }
 
 
 struct TranslationRow: View {
-    let label: String
-    let value: String
-    @State private var showSilentAlert = false
-    @State private var isSpeaking = false
-
-    var body: some View {
-        Button(action: {
-            speak()
-        }) {
-            HStack {
-                Image(systemName: isSpeaking ? "pause.fill" : "play.fill")
-                    .foregroundColor(.red)
-
-                Text("\(label) : \(value)")
-                    .font(.headline)
-                    .foregroundColor(.black)
-
-                Spacer()
-            }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .cornerRadius(25)
-            .shadow(color: .gray.opacity(0.2), radius: 4, x: 0, y: 2)
-        }
-        .padding(.horizontal, 20)
-        .alert(isPresented: $showSilentAlert) {
-            Alert(
-                title: Text("Silent Mode!"),
-                message: Text("Turn on Volume"),
-                dismissButton: .default(Text("OK"))
-            )
-        }
-    }
-
-    func speak() {
-        let langCode: String
-        switch label.uppercased() {
-        case "TH":
-            langCode = "th-TH"
-        case "EN":
-            langCode = "en-US"
-        case "JP", "JA":
-            langCode = "ja-JP"
-        default:
-            langCode = "en-US"
-        }
-
-        isSpeaking = true
-
-        SpeechManager.shared.speak(text: value, language: langCode) {
-            showSilentAlert = true
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(value.count) * 0.1 + 0.5) {
-            isSpeaking = false
-        }
-    }
+	let label: String
+	let value: String
+	@State private var showSilentAlert = false
+	@State private var isSpeaking = false
+	
+	var body: some View {
+		Button(action: {
+			speak()
+		}) {
+			HStack {
+				Image(systemName: isSpeaking ? "pause.fill" : "play.fill")
+					.foregroundColor(.red)
+				
+				Text("\(label) : \(value)")
+					.font(.headline)
+					.foregroundColor(.black)
+				
+				Spacer()
+			}
+			.padding()
+			.frame(maxWidth: .infinity)
+			.background(Color.white)
+			.cornerRadius(25)
+			.shadow(color: .gray.opacity(0.2), radius: 4, x: 0, y: 2)
+		}
+		.padding(.horizontal, 20)
+		.alert(isPresented: $showSilentAlert) {
+			Alert(
+				title: Text("Silent Mode!"),
+				message: Text("Turn on Volume"),
+				dismissButton: .default(Text("OK"))
+			)
+		}
+	}
+	
+	func speak() {
+		let langCode: String
+		switch label.uppercased() {
+		case "TH":
+			langCode = "th-TH"
+		case "EN":
+			langCode = "en-US"
+		case "JP", "JA":
+			langCode = "ja-JP"
+		default:
+			langCode = "en-US"
+		}
+		
+		isSpeaking = true
+		
+		SpeechManager.shared.speak(text: value, language: langCode) {
+			showSilentAlert = true
+		}
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + Double(value.count) * 0.1 + 0.5) {
+			isSpeaking = false
+		}
+	}
 }
 
 
@@ -140,7 +157,7 @@ struct TranslationRow: View {
 
 //example
 #Preview {
-    let sampleImage = UIImage(named: "apple") ?? UIImage(systemName: "photo")!
-    return ResultFruitsView(photo: sampleImage)
+	let sampleImage = UIImage(named: "apple") ?? UIImage(systemName: "photo")!
+	return ResultFruitsView(photo: sampleImage)
 }
 
