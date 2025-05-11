@@ -9,19 +9,40 @@ import SwiftUI
 
 struct AnimalsView: View {
     @StateObject var viewModel = AnimalsViewModel()
-    
+	@Environment(\.dismiss) var dismiss
 	var body: some View {
-		VStack {
-			if viewModel.isLoading {
-				ProgressView()
-			} else {
-				CardSwiperView(items: $viewModel.animals) { animal in
-					AnimalsCardView(animal: animal)
+		ZStack {
+			Image("background03")
+				.resizable()
+				.aspectRatio(contentMode: ContentMode.fill)
+				.opacity(0.7)
+				.ignoresSafeArea()
+			VStack {
+				if viewModel.isLoading {
+					ProgressView()
+				} else {
+					CardSwiperView(items: $viewModel.animals) { animal in
+						AnimalsCardView(animal: animal)
+					}
 				}
 			}
+			.onAppear {
+				viewModel.loadAnimals()
+			}
 		}
-		.onAppear {
-			viewModel.loadAnimals()
+		.navigationBarBackButtonHidden(true)
+		.toolbar {
+			ToolbarItem(placement: .navigationBarTrailing) {
+				Button(action: {
+					dismiss()
+				}) {
+					Image("homeIcon")
+						.resizable()
+						.aspectRatio(contentMode: .fit)
+						.frame(width: 50, height: 50)
+						.padding(8)
+				}
+			}
 		}
 	}
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuSelectionView: View {
 	@Binding var selectedCategory: String?
-	
+	@Environment(\.dismiss) var dismiss
 	var body: some View {
 		// ตรวจสอบให้แน่ใจว่ามี category ที่เลือก
 		guard let category = selectedCategory else {
@@ -21,6 +21,7 @@ struct MenuSelectionView: View {
 				Image("background02")
 					.resizable()
 					.scaledToFill()
+					.opacity(0.8)
 					.ignoresSafeArea()
 				
 				VStack(spacing: 20) {
@@ -36,7 +37,7 @@ struct MenuSelectionView: View {
 					
 					// Quiz Button
 					NavigationLink(destination: category == "Fruit" ?
-									AnyView(FruitQuizView(gameManagerVM: GameManagerVM(category: .fruits))) :
+								   AnyView(FruitQuizView(gameManagerVM: GameManagerVM(category: .fruits))) :
 									AnyView(AnimalQuizView(gameManagerVM: GameManagerVM(category: .animals)))) {
 						createButton(imageName: "quizButton")
 					}
@@ -44,6 +45,21 @@ struct MenuSelectionView: View {
 					Spacer()
 				}
 			}
+				.navigationBarBackButtonHidden(true)
+				.toolbar {
+					ToolbarItem(placement: .navigationBarTrailing) {
+						Button(action: {
+							dismiss()
+						}) {
+							Image("backIcon")
+								.resizable()
+								.aspectRatio(contentMode: .fit)
+								.frame(width: 50, height: 50)
+								.padding(8)
+						}
+					}
+				}
+			
 		)
 	}
 	

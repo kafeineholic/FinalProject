@@ -11,44 +11,47 @@ struct CategorySelectionView: View {
 	@Environment(\.dismiss) var dismiss
 	@Binding var selectedCategory: String?
 	@State private var isActive = false
-	
+	@State private var navigateToMenu = false
+
 	var body: some View {
-		NavigationView {
-					ZStack {
-						Image("background02")
-							.resizable()
-							.scaledToFill()
-							.ignoresSafeArea()
-						
-						VStack(spacing: 24) {
-							Spacer().frame(height: 30)
-							
-							// ปุ่ม Fruit
-							Button(action: {
-								selectedCategory = "Fruit"
-								isActive = true // เปิดการ navigate
-							}) {
-								CategoryButton(imageName: "button02")
-							}
-							.background(
-								NavigationLink(
-									destination: MenuSelectionView(selectedCategory: $selectedCategory),
-									isActive: $isActive,
-									label: { EmptyView() }
-								)
-							)
-							
-							// ปุ่ม Animal
-							Button(action: {
-								selectedCategory = "Animal"
-								isActive = true // เปิดการ navigate
-							}) {
-								CategoryButton(imageName: "button03")
-							}
-							
-							Spacer()
-						}
+		NavigationStack {
+			ZStack {
+				Image("background02")
+					.resizable()
+					.scaledToFill()
+					.opacity(0.8)
+					.ignoresSafeArea()
+
+				VStack(spacing: 24) {
+					Spacer().frame(height: 30)
+
+					// ปุ่ม Fruit
+					Button(action: {
+						selectedCategory = "Fruit"
+						navigateToMenu = true
+					}) {
+						CategoryButton(imageName: "button02")
+					}
+
+					// ปุ่ม Animal
+					Button(action: {
+						selectedCategory = "Animal"
+						navigateToMenu = true
+					}) {
+						CategoryButton(imageName: "button03")
+					}
+
+					Spacer()
+				}
 				.padding(.horizontal)
+
+				// NavigationLink สำหรับนำทางไปยังหน้าเมนู
+				NavigationLink(
+					destination: MenuSelectionView(selectedCategory: $selectedCategory)
+						.navigationBarBackButtonHidden(true),
+					isActive: $navigateToMenu,
+					label: { EmptyView() }
+				)
 			}
 			.navigationBarBackButtonHidden(true)
 			.toolbar {
@@ -56,10 +59,11 @@ struct CategorySelectionView: View {
 					Button(action: {
 						dismiss()
 					}) {
-						Image(systemName: "house.circle.fill")
-							.font(.system(size: 40))
-							.foregroundStyle(.white, .blue)
-							.padding()
+						Image("homeIcon")
+							.resizable()
+							.aspectRatio(contentMode: .fit)
+							.frame(width: 50, height: 50)
+							.padding(8)
 					}
 				}
 			}
@@ -69,7 +73,7 @@ struct CategorySelectionView: View {
 
 struct CategoryButton: View {
 	let imageName: String
-	
+
 	var body: some View {
 		Image(imageName)
 			.resizable()

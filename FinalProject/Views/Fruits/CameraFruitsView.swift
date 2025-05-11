@@ -26,9 +26,6 @@ struct CameraFruitsView: View {
 
 				VStack(spacing: 0) {
 					Spacer().frame(height: 600) // ดัน UI ลงมาใต้กล้อง
-
-				
-
 					// ปุ่มถ่ายรูป
 					Button(action: {
 						cameraModel.takePhoto { image in
@@ -76,20 +73,20 @@ struct CameraFruitsView: View {
 					Text("No image available")
 				}
 			} //end navdestination
-			Spacer()
-				.navigationBarBackButtonHidden(true)
-				.toolbar {
-					ToolbarItem(placement: .navigationBarTrailing) {
-						Button(action: {
-							dismiss()
-						}) {
-							Image(systemName: "house.circle.fill")
-								.font(.system(size: 40))
-								.foregroundStyle(.white, .blue)
-								.padding()
-						}
+			.navigationBarBackButtonHidden(true)
+			.toolbar {
+				ToolbarItem(placement: .navigationBarTrailing) {
+					Button(action: {
+						dismiss()
+					}) {
+						Image("homeIcon")
+							.resizable()
+							.aspectRatio(contentMode: .fit)
+							.frame(width: 50, height: 50)
+							.padding(8)
 					}
-				}  //end toolbar
+				}
+			}  //end toolbar
 		} //end navstack
     }
 }

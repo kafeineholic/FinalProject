@@ -54,7 +54,7 @@ struct ResultAnimalsView: View {
             let result = model.classifyingAnimalImage()
             let animal = result.components(separatedBy: "\n")[0].lowercased()
 
-            // ใช้ loadTranslations() เพื่อดึงข้อมูลแปลผล
+         
             if let allTranslations = AnimalsData.loadTranslations(),
                let animalTranslation = allTranslations[animal] {
                 translations = [

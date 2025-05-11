@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AnimalQuizView: View {
     @ObservedObject var gameManagerVM: GameManagerVM
+	@Environment(\.dismiss) var dismiss
     var body: some View {
         ZStack {
             Image("animalQuizBackground")
@@ -18,12 +19,8 @@ struct AnimalQuizView: View {
                     ReusableText(text: "Animal Knowledge Quiz!", size: 30)
                         .padding()
                     ReusableText(text: "Q:\(gameManagerVM.model.currentQuestionIndex + 1)/10", size: 25)
-
                     ReusableText(text: "Scores:\(gameManagerVM.score.description)", size: 18)
-                    
                     Spacer()
-                    
-                                    
                     Image(gameManagerVM.model.quizModel.imageName)
                         .resizable()
                         .scaledToFit()
@@ -35,6 +32,20 @@ struct AnimalQuizView: View {
                 }
             }
         }
+		.navigationBarBackButtonHidden(true)
+		.toolbar {
+			ToolbarItem(placement: .navigationBarTrailing) {
+				Button(action: {
+					dismiss()
+				}) {
+					Image("homeIcon")
+						.resizable()
+						.aspectRatio(contentMode: .fit)
+						.frame(width: 50, height: 50)
+						.padding(8)
+				}
+			}
+		}
     }
 }
 

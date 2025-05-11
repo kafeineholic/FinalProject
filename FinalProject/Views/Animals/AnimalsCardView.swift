@@ -66,8 +66,7 @@ struct AnimalsCardFront: View {
 			Image(animal.imageName)
 				.resizable()
 				.scaledToFit()
-				.frame(width: width, height: height)
-				.clipped()
+				.frame(width: width * 0.9, height: height * 0.85)
 		} //end ZStack
 		.rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
 	}
