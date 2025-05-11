@@ -11,7 +11,7 @@ struct MenuSelectionView: View {
 	@Binding var selectedCategory: String?
 	@Environment(\.dismiss) var dismiss
 	var body: some View {
-		// ตรวจสอบให้แน่ใจว่ามี category ที่เลือก
+	
 		guard let category = selectedCategory else {
 			return AnyView(Text("กรุณาเลือกประเภทก่อน").font(.largeTitle))
 		}
@@ -24,7 +24,8 @@ struct MenuSelectionView: View {
 					.opacity(0.8)
 					.ignoresSafeArea()
 				
-				VStack(spacing: 20) {
+				VStack(spacing: 24) {
+					Spacer().frame(height: 70)
 					// Flashcard Button
 					NavigationLink(destination: category == "Fruit" ? AnyView(FruitsView()) : AnyView(AnimalsView())) {
 						createButton(imageName: "flashcardButton")
@@ -63,13 +64,21 @@ struct MenuSelectionView: View {
 		)
 	}
 	
-	// ฟังก์ชันสร้างปุ่มให้สวยงาม
 	func createButton(imageName: String) -> some View {
 		VStack {
 			Image(imageName)
 				.resizable()
 				.aspectRatio(contentMode: .fit)
 				.frame(width: 220, height: 80)
+				.padding()
+				.background(
+					RoundedRectangle(cornerRadius: 40)
+						.fill(Color(red: 255/255, green: 248/255, blue: 231/255))
+						.shadow(color: Color.gray.opacity(0.2), radius: 6, x: 0, y: 4)
+				)
+				.overlay(
+					RoundedRectangle(cornerRadius: 40)
+						.stroke(Color.gray.opacity(0.5), lineWidth: 2))
 		}
 	}
 }

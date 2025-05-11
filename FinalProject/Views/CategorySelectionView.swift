@@ -1,5 +1,5 @@
 //
-//  SecondView.swift
+//  CategorySelectionView.swift
 //  FinalProject
 //
 //  Created by Pattranith Ruangrotch on 3/5/2568 BE.
@@ -12,7 +12,7 @@ struct CategorySelectionView: View {
 	@Binding var selectedCategory: String?
 	@State private var isActive = false
 	@State private var navigateToMenu = false
-
+	
 	var body: some View {
 		NavigationStack {
 			ZStack {
@@ -21,10 +21,10 @@ struct CategorySelectionView: View {
 					.scaledToFill()
 					.opacity(0.8)
 					.ignoresSafeArea()
-
+				
 				VStack(spacing: 24) {
-					Spacer().frame(height: 30)
-
+					Spacer().frame(height: 70)
+					
 					// ปุ่ม Fruit
 					Button(action: {
 						selectedCategory = "Fruit"
@@ -32,7 +32,7 @@ struct CategorySelectionView: View {
 					}) {
 						CategoryButton(imageName: "button02")
 					}
-
+					
 					// ปุ่ม Animal
 					Button(action: {
 						selectedCategory = "Animal"
@@ -40,11 +40,11 @@ struct CategorySelectionView: View {
 					}) {
 						CategoryButton(imageName: "button03")
 					}
-
+					
 					Spacer()
 				}
 				.padding(.horizontal)
-
+				
 				// NavigationLink สำหรับนำทางไปยังหน้าเมนู
 				NavigationLink(
 					destination: MenuSelectionView(selectedCategory: $selectedCategory)
@@ -73,14 +73,20 @@ struct CategorySelectionView: View {
 
 struct CategoryButton: View {
 	let imageName: String
-
+	
 	var body: some View {
 		Image(imageName)
 			.resizable()
 			.aspectRatio(contentMode: .fit)
 			.frame(width: 220, height: 80)
 			.padding()
-			.background(Color(red: 255/255, green: 248/255, blue: 231/255))
-			.cornerRadius(25)
+			.background(
+				RoundedRectangle(cornerRadius: 40)
+					.fill(Color(red: 255/255, green: 248/255, blue: 231/255)) // ใช้สีครีมอ่อน
+					.shadow(color: Color.gray.opacity(0.2), radius: 6, x: 0, y: 4) // เงานุ่มๆ
+			)
+			.overlay(
+				RoundedRectangle(cornerRadius: 40)
+					.stroke(Color.gray.opacity(0.5), lineWidth: 2))
 	}
 }
