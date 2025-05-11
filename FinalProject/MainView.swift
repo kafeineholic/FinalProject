@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
 	
 	@State private var isAnimating = false
-	@State private var selectedCategory: String? = nil  // เก็บค่าประเภทที่เลือก
+	@State private var selectedCategory: String? = nil
 	
 	var body: some View {
 		NavigationStack{
@@ -21,7 +21,7 @@ struct MainView: View {
 					.ignoresSafeArea()
 					.ignoresSafeArea()
 				VStack { //open vstack1
-					NavigationLink(destination: CategorySelectionView(selectedCategory: $selectedCategory)) {
+					NavigationLink(destination: CategorySelectionView(selectedCategory: $selectedCategory)) { 
 						Image("button01")
 							.resizable()
 							.aspectRatio(contentMode: .fit)
