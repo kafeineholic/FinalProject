@@ -12,7 +12,11 @@ struct FruitQuizView: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.green.opacity(0.3), .yellow.opacity(0.3)], startPoint: .top, endPoint: .bottom).ignoresSafeArea()
+			Image("fruitQuizBackground")
+				.resizable()
+				.aspectRatio(contentMode: ContentMode.fill)
+				.opacity(0.7)
+				.ignoresSafeArea()
 
             if gameManagerVM.model.quizCompleted {
                 QuizCompletedView(gameManagerVM: gameManagerVM)

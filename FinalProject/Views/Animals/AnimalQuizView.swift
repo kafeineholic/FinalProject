@@ -4,13 +4,13 @@ struct AnimalQuizView: View {
     @ObservedObject var gameManagerVM: GameManagerVM
     var body: some View {
         ZStack {
-            Image("image")
+            Image("animalQuizBackground")
                 .resizable()
                 .aspectRatio(contentMode: ContentMode.fill)
+				.opacity(0.7)
                 .ignoresSafeArea()
+			
             
-            LinearGradient(colors: [.purple.opacity(0.4), .blue.opacity(0.4)], startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
             if (gameManagerVM.model.quizCompleted) {
                 QuizCompletedView(gameManagerVM: gameManagerVM)
             } else {
