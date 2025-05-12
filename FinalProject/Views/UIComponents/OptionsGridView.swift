@@ -69,6 +69,7 @@ struct OptionView: View {
             Text(quizOption.option)
                 .frame(width: 150, height: 38)
                 .font(.system(size: 20, weight: .bold, design: .rounded))
+                .foregroundColor(.blue)
         }
     }
 

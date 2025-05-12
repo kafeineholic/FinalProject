@@ -10,8 +10,6 @@ struct AnimalQuizView: View {
                 .aspectRatio(contentMode: ContentMode.fill)
 				.opacity(0.7)
                 .ignoresSafeArea()
-			
-            
             if (gameManagerVM.model.quizCompleted) {
                 QuizCompletedView(gameManagerVM: gameManagerVM)
             } else {
