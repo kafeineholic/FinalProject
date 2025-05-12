@@ -33,7 +33,9 @@ class CameraFruitsModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelega
 		}
 		
 		previewLayer = AVCaptureVideoPreviewLayer(session: session)
-		previewLayer?.videoGravity = .resizeAspect
+		//previewLayer?.videoGravity = .resizeAspect
+        previewLayer?.videoGravity = .resizeAspectFill
+
 	}
 	
 	func startSession() {

@@ -14,7 +14,8 @@ struct CameraFruitsPreview: UIViewRepresentable {
 	func makeUIView(context: Context) -> UIView {
 		let view = UIView(frame: UIScreen.main.bounds)
 		if let previewLayer = cameraModel.previewLayer {
-			previewLayer.frame = view.bounds
+			//previewLayer.frame = view.bounds
+            previewLayer.frame = UIScreen.main.bounds
 			view.layer.addSublayer(previewLayer)
 		}
 		return view

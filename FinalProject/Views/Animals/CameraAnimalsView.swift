@@ -15,8 +15,9 @@ struct CameraAnimalsView: View {
 			ZStack(alignment: .top) {
 				// กล้องชิดบนสุดและสูง 600
 				CameraAnimalsPreview(cameraModel: cameraModel)
-					.ignoresSafeArea(edges: .top)
-					.frame(height: 600)
+					//.ignoresSafeArea(edges: .top)
+					//.frame(height: 600)
+                    .ignoresSafeArea() 
 				
 				VStack(spacing: 0) {
 					Spacer().frame(height: 600) // ดัน UI ลงมาใต้กล้อง
