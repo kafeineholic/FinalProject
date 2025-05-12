@@ -17,7 +17,7 @@ struct AnimalsView: View {
                     ProgressView()
                 } else if viewModel.animals.isEmpty {
                     VStack(spacing: 20) {
-                        Text("Restart!")
+                        Text("Play Again!")
                             .font(.title2)
                             .foregroundColor(.white)
 
