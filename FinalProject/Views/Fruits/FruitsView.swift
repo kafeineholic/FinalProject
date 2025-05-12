@@ -23,7 +23,7 @@ struct FruitsView: View {
                     ProgressView()
                 } else if viewModel.fruits.isEmpty {
                     VStack(spacing: 20) {
-                        Text("Restart!")
+                        Text("Play Again!")
                             .font(.title2)
                             .foregroundColor(.white)
 
