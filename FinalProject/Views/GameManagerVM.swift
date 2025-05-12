@@ -1,5 +1,7 @@
 import Foundation
 import SwiftUI
+import AVFoundation
+
 
 enum QuizCategory {
     case animals
@@ -10,9 +12,11 @@ class GameManagerVM: ObservableObject {
     @Published var model: Quiz
     @Published var score = 0
     @Published var category: QuizCategory
-
+    
     private var questionPool: [QuizModel]
     private var currentIndex = 0
+    private var audioPlayer: AVAudioPlayer?
+
 
     init(category: QuizCategory) {
         self.category = category
@@ -48,9 +52,23 @@ class GameManagerVM: ObservableObject {
         }
         return correctAnswerId // fallback
     }
+    
+    func playSound(named name: String) {
+        guard let url = Bundle.main.url(forResource: name, withExtension: "wav") else {
+            print("❌ Sound file \(name).wav not found.")
+            return
+        }
+
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            print("❌ Could not play sound \(name): \(error.localizedDescription)")
+        }
+    }
+
 
     func verifyAnswer(selectedOption: QuizOption) {
-        // Reset flags
         for index in model.quizModel.optionsList.indices {
             model.quizModel.optionsList[index].isMatched = false
             model.quizModel.optionsList[index].isSelected = false
@@ -62,9 +80,11 @@ class GameManagerVM: ObservableObject {
             if selectedOption.id == model.quizModel.answerId {
                 model.quizModel.optionsList[index].isMatched = true
                 score += 1
+                playSound(named: "correct")
+            } else {
+                playSound(named: "wrong")
             }
 
-            // Go to next question or complete
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 if self.currentIndex < self.questionPool.count - 1 {
                     self.currentIndex += 1
@@ -76,6 +96,7 @@ class GameManagerVM: ObservableObject {
             }
         }
     }
+
 
     func restartGame() {
         self.currentIndex = 0
