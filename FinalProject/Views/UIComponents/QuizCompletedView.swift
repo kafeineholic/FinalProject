@@ -10,18 +10,19 @@ struct QuizCompletedView: View {
 				.scaledToFit()
 				.ignoresSafeArea()
 				.ignoresSafeArea()
+            
 			VStack(spacing: 30) {
-				Image(systemName: "gamecontroller.fill")
-					.foregroundColor(.yellow)
-					.font(.system(size: 70))
-					.shadow(radius: 10)
-					.padding()
+//				Image(systemName: "gamecontroller.fill")
+//					.foregroundColor(.yellow)
+//					.font(.system(size: 70))
+//					.shadow(radius: 10)
+//					.padding()
 				
 				// 🎉 Title
 				Text(titleText())
 					.font(.system(size: 36, weight: .heavy, design: .rounded))
-					.foregroundColor(Color.orange)
-					.shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2) 
+					.foregroundColor(Color.purple.opacity(0.9))
+					.shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
 					.multilineTextAlignment(.center)
 				
 				// 🎈 Message
@@ -50,7 +51,8 @@ struct QuizCompletedView: View {
 						}
 					}
 				}
-				
+                
+             
 				// 🔄 Play Again Button
 				Button(action: {
 					gameManagerVM.restartGame()
@@ -95,3 +97,5 @@ struct QuizCompletedView: View {
 		}
 	}
 }
+
+
