@@ -24,6 +24,13 @@ class SpeechManager: NSObject, AVSpeechSynthesizerDelegate {
         utterance.voice = AVSpeechSynthesisVoice(language: language)
         utterance.rate = 0.5
 
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.duckOthers])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Failed to configure audio session:", error)
+        }
+
         didSpeak = false
         speechCompletionHandler = {
             if !self.didSpeak {
@@ -33,6 +40,7 @@ class SpeechManager: NSObject, AVSpeechSynthesizerDelegate {
 
         synthesizer.speak(utterance)
     }
+
 
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         didSpeak = true
