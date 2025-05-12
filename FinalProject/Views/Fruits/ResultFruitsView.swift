@@ -15,7 +15,7 @@ struct ResultFruitsView: View {
 	@Environment(\.dismiss) var dismiss
 	var body: some View {
 		ZStack {
-			Image("background01")
+			Image("background04")
 				.resizable()
 				.scaledToFill()
 				.ignoresSafeArea()
