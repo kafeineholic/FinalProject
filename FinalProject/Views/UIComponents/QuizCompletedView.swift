@@ -9,15 +9,8 @@ struct QuizCompletedView: View {
 				.resizable()
 				.scaledToFit()
 				.ignoresSafeArea()
-				.ignoresSafeArea()
             
 			VStack(spacing: 30) {
-//				Image(systemName: "gamecontroller.fill")
-//					.foregroundColor(.yellow)
-//					.font(.system(size: 70))
-//					.shadow(radius: 10)
-//					.padding()
-				
 				// 🎉 Title
 				Text(titleText())
 					.font(.system(size: 36, weight: .heavy, design: .rounded))

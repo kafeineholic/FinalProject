@@ -15,9 +15,8 @@ struct CameraAnimalsView: View {
 			ZStack(alignment: .top) {
 				// กล้องชิดบนสุดและสูง 600
 				CameraAnimalsPreview(cameraModel: cameraModel)
-					//.ignoresSafeArea(edges: .top)
-					//.frame(height: 600)
-                    .ignoresSafeArea() 
+
+					.ignoresSafeArea()
 				
 				VStack(spacing: 0) {
 					Spacer().frame(height: 600) // ดัน UI ลงมาใต้กล้อง
@@ -30,15 +29,19 @@ struct CameraAnimalsView: View {
 							}
 						}
 					}) {
-						Text("📸 Take a Photo")
-							.font(.title2)
-							.bold()
+						Image("button05")
+							.resizable()
+							.aspectRatio(contentMode: .fit)
+							.frame(width: 180, height: 60)
 							.padding()
-							.frame(maxWidth: .infinity)
-							.background(Color.green)
-							.foregroundColor(.white)
-							.cornerRadius(12)
-							.padding(.horizontal, 40)
+							.background(
+								RoundedRectangle(cornerRadius: 40)
+									.fill(Color.white)
+									.shadow(color: Color.gray.opacity(0.2), radius: 6, x: 0, y: 4)
+							)
+							.overlay(
+								RoundedRectangle(cornerRadius: 40)
+									.stroke(Color.gray.opacity(0.5), lineWidth: 2))
 					}
 					.padding(.top, 40)
 					
