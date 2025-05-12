@@ -16,22 +16,23 @@ struct AnimalsView: View {
                 if viewModel.isLoading {
                     ProgressView()
                 } else if viewModel.animals.isEmpty {
-                    VStack(spacing: 20) {
-                        Text("Play Again!")
-                            .font(.title2)
-                            .foregroundColor(.white)
-
                         Button(action: {
                             viewModel.loadAnimals()
                         }) {
-                            Image(systemName: "gobackward")
-                                    .font(.system(size: 24, weight: .bold))
-                                        .foregroundColor(.white)
-                                        .padding()
-                                        .background(Color.indigo)
-                                        .clipShape(Circle())
+							Image("button04")
+								.resizable()
+								.aspectRatio(contentMode: .fit)
+								.frame(width: 220, height: 80)
+								.padding()
+								.background(
+									RoundedRectangle(cornerRadius: 40)
+										.fill(Color(red: 255/255, green: 248/255, blue: 231/255))
+										.shadow(color: Color.gray.opacity(0.2), radius: 6, x: 0, y: 4)
+								)
+								.overlay(
+									RoundedRectangle(cornerRadius: 40)
+										.stroke(Color.gray.opacity(0.5), lineWidth: 2))
                         }
-                    }
                 } else {
                     CardSwiperView(items: $viewModel.animals) { animal in
                         AnimalsCardView(animal: animal)
