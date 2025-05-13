@@ -60,12 +60,18 @@ class GameManagerVM: ObservableObject {
         }
 
         do {
+            // Set up the audio session to ignore mute switch
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            try AVAudioSession.sharedInstance().setActive(true)
+
             audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.prepareToPlay()
             audioPlayer?.play()
         } catch {
             print("❌ Could not play sound \(name): \(error.localizedDescription)")
         }
     }
+
 
 
     func verifyAnswer(selectedOption: QuizOption) {
