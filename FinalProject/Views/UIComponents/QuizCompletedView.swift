@@ -14,23 +14,23 @@ struct QuizCompletedView: View {
 				// 🎉 Title
 				Text(titleText())
 					.font(.system(size: 36, weight: .heavy, design: .rounded))
-					.foregroundColor(Color.purple.opacity(0.9))
-					.shadow(color: .black.opacity(0.5), radius: 3, x: 2, y: 2)
+					.foregroundColor(Color(red: 255/255, green: 241/255, blue: 118/255))
+					.shadow(color: .black.opacity(0.3), radius: 3, x: 2, y: 2)
 					.multilineTextAlignment(.center)
 				
 				// 🎈 Message
 				Text(scoreMessage())
 					.font(.system(size: 20, weight: .semibold, design: .rounded))
-					.foregroundColor(Color.black)
+					.foregroundColor(Color(red: 255/255, green: 182/255, blue: 193/255))
 					.multilineTextAlignment(.center)
-					.shadow(color: .gray.opacity(0.5), radius: 2, x: 1, y: 1)
+					.shadow(color: .white .opacity(0.5), radius: 2, x: 1, y: 1)
 					.padding(.horizontal)
 				
 				// 🎯 Score Display
 				Text("Your Score: \(gameManagerVM.score)/10")
 					.font(.system(size: 28, weight: .bold, design: .rounded))
-					.foregroundColor(Color(red: 0/255, green: 153/255, blue: 102/255))
-					.shadow(color: .black.opacity(0.3), radius: 2, x: 1, y: 2)
+					.foregroundColor(Color(red: 135/255, green: 206/255, blue: 235/255))
+					.shadow(color: .white .opacity(0.3), radius: 2, x: 1, y: 2)
 				
 				// 🌟 Stars if Perfect
 				if gameManagerVM.score == 10 {
@@ -44,8 +44,6 @@ struct QuizCompletedView: View {
 						}
 					}
 				}
-                
-             
 				// 🔄 Play Again Button
 				Button(action: {
 					gameManagerVM.restartGame()
