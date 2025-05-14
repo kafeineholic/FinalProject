@@ -1,10 +1,3 @@
-//
-//  CardDataProtocol.swift
-//  FinalProject
-//
-//  Created by Pattranith Ruangrotch on 5/5/2568 BE.
-//
-
 import SwiftUI
 
 // Protocol หลักสำหรับข้อมูลการ์ดทุกชนิด

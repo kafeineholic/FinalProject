@@ -1,10 +1,3 @@
-//
-//  ResultAnimalsView.swift
-//  FinalProject
-//
-//  Created by Siripoom Jaruphoom on 6/5/25.
-//
-
 import SwiftUI
 
 struct ResultAnimalsView: View {

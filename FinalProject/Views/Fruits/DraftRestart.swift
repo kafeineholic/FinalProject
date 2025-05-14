@@ -1,10 +1,3 @@
-//
-//  DraftRestart.swift
-//  FinalProject
-//
-//  Created by a. on 12/5/2568 BE.
-//
-
 import SwiftUI
 
 struct DraftRestart: View {

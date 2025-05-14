@@ -1,10 +1,3 @@
-//
-//  FruitQuizView.swift
-//  Quiz
-//
-//  Created by a. on 6/5/2568 BE.
-//
-
 import SwiftUI
 
 struct FruitQuizView: View {

@@ -1,10 +1,3 @@
-//
-//  SpeechManager.swift
-//  FinalProject
-//
-//  Created by Pattranith Ruangrotch on 4/5/2568 BE.
-//
-
 import AVFoundation
 import UIKit
 

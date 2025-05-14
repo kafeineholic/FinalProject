@@ -1,10 +1,3 @@
-//
-//  OptionsGridView.swift
-//  AKQuiz
-//
-//  Created by richa.e.srivastava on 16/11/2021.
-//
-
 import Foundation
 import SwiftUI
 

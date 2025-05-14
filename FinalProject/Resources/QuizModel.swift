@@ -1,10 +1,3 @@
-//
-//  QuizModel.swift
-//  ShoppingAppUI
-//
-//  Created by richa.e.srivastava on 13/11/2021.
-//
-
 import Foundation
 import SwiftUI
 

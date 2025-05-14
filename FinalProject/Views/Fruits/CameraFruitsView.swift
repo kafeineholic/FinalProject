@@ -1,10 +1,3 @@
-//
-//  CameraFruitsView.swift
-//  FinalProject
-//
-//  Created by Pattranith Ruangrotch on 3/5/2568 BE.
-//
-
 import SwiftUI
 
 struct CameraFruitsView: View {

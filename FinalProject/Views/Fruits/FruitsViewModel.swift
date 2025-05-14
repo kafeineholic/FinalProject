@@ -1,10 +1,3 @@
-//
-//  FruitsViewModel.swift
-//  FinalProject
-//
-//  Created by Pattranith Ruangrotch on 5/5/2568 BE.
-//
-
 import SwiftUI
 
 class FruitsViewModel: ObservableObject {

@@ -1,10 +1,3 @@
-//
-//  AnimalsCardView.swift
-//  FinalProject
-//
-//  Created by Pattranith Ruangrotch on 7/5/2568 BE.
-//
-
 import Foundation
 
 import SwiftUI

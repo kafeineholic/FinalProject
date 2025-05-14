@@ -1,10 +1,3 @@
-//
-//  AnimalsMLModel.swift
-//  FinalProject
-//
-//  Created by Siripoom Jaruphoom on 6/5/25.
-//
-
 import UIKit
 import CoreML
 import Vision

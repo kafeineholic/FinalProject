@@ -1,11 +1,3 @@
-//
-//  FruitsData.swift
-//  FinalProject
-//
-//  Created by Pattranith Ruangrotch on 4/5/2568 BE.
-//
-
-
 import Foundation
 
 // โครงสร้างข้อมูลของผลไม้ (ปรับให้ตรงกับ plist)
